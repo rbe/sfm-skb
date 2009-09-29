@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skb>
+    <job name="GCH">
+        <plugin name="" class="">
+            <datasource name="ds1" url=""/>
+        </plugin>
+        <output url="">
+            <map plugin-name="" var-name="" row="" col=""/>
+        </output>
+    </job>
+</skb>

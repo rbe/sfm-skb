@@ -1,0 +1,49 @@
+package de.sfhms.skb.input;
+
+
+// <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
+// #[regen=yes,id=DCE.713D2C69-DBCE-4214-DB57-9C9C6C5D8237]
+// </editor-fold> 
+public class ExcelImportAdapterImpl implements DataImportAdapter {
+
+    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
+    // #[regen=yes,id=DCE.38A9F7D0-846B-FE1C-82CF-CECCA2F70D43]
+    // </editor-fold> 
+    public ExcelImportAdapterImpl () {
+    }
+
+    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
+    // #[regen=yes,id=DCE.69BB5410-9BBD-0B5D-B038-F88CB3669250]
+    // </editor-fold> 
+    public void open (URL url) {
+    }
+
+    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
+    // #[regen=yes,id=DCE.D46DA694-DD24-B97B-9861-E34A376A86A0]
+    // </editor-fold> 
+    public void getCell (int row, int col, Class type) {
+    }
+
+    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
+    // #[regen=yes,id=DCE.8B7417A9-73D3-687F-D7B6-4BBD7D68E0F3]
+    // </editor-fold> 
+    public int getRowCount () {
+        return 0;
+    }
+
+    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
+    // #[regen=yes,id=DCE.1645D741-D98B-B1AE-1C18-A66DED4C2288]
+    // </editor-fold> 
+    public int getColumnCount () {
+        return 0;
+    }
+
+    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
+    // #[regen=yes,id=DCE.C45F1CE9-1109-0E53-5CE6-1F5C3CB0C395]
+    // </editor-fold> 
+    public MyCell getCellRange () {
+        return null;
+    }
+
+}
+
