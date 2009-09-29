@@ -4,49 +4,37 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-
-// <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-// #[regen=yes,id=DCE.1C479E19-AC30-99F9-AF18-6A4A9BD3382A]
-// </editor-fold> 
 public class DataOutputFactory {
 
-
-    private static final Map<URL,DataOutputAdapter>cache;
+    private static final Map<URL, DataOutputAdapter> cache;
 
     static {
-        cache = new HashMap<URL,DataOutputAdapter>();
+        cache = new HashMap<URL, DataOutputAdapter>();
     }
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.94EAE46B-F518-7C8B-F7F9-3B1CF716E6EF]
-    // </editor-fold> 
-    public DataOutputFactory () {
+    public DataOutputFactory() {
     }
 
-
-    public synchronized static DataOutputAdapter SqlOutputAdapterImpl(URL url){
+    public synchronized static DataOutputAdapter createExcelOutputAdapterImpl(URL url) {
         DataOutputAdapter a = cache.get(url);
-        if(null == a){
-            a = new SqlOutputAdapterImpl();
+        if (null == a) {
+            a = new ExcelDataOutputAdapterImpl();
             a.open(url);
+            a.init();
             cache.put(url, a);
         }
-
         return a;
     }
 
-
-    public synchronized static DataOutputAdapter OOoOutputAdapterImpl(URL url){
+    public synchronized static DataOutputAdapter createOOoOutputAdapterImpl(URL url) {
         DataOutputAdapter a = cache.get(url);
-        if(null == a){
-            a = new OOoOutputAdapterImpl();
+        if (null == a) {
+            a = new OOoDataOutputAdapterImpl();
             a.open(url);
+            a.init();
             cache.put(url, a);
         }
-
         return a;
     }
-
-    
 }
 

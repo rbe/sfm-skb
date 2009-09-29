@@ -24,33 +24,16 @@ public class CsvDataImportAdapterImpl implements DataImportAdapter {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public MyCell getCell(int row, int column) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
     public long getRowCount(int sheet) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public long getRowCount() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public long getColumnCount(int sheet) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public long getColumnCount() {
+    public long getColumnCount(int sheet, int row) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public MyCell[][] getCellRange(int sheet, int startRow, int startColumn, int endRow, int endColumn) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
-    public MyCell[][] getCellRange(int startRow, int startColumn, int endRow, int endColumn) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
 }
 

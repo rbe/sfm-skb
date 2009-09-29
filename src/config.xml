@@ -7,7 +7,7 @@
             </plugin>
         </input>
         <!-- nach input via plugins stehen vars bereit -->
-        <output url="">
+        <output>
             <plugin class="">
             </plugin>
             <!--map plugin-name="" var-name="" row="" col=""/-->

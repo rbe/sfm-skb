@@ -1,21 +1,22 @@
 package de.sfhms.skb.output;
 
 import de.sfhms.skb.model.MyCell;
-import java.net.MalformedURLException;
 import java.net.URL;
 
-// <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-// #[regen=yes,id=DCE.D8CD9124-47A3-167C-C867-EFF5CA3EC741]
-// </editor-fold> 
-public class OOoOutputAdapterImpl implements DataOutputAdapter {
+public class ExcelDataOutputAdapterImpl implements DataOutputAdapter {
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.1E6D805E-5D5F-E059-A80B-EFF330497CB2]
-    // </editor-fold> 
-    public OOoOutputAdapterImpl() {
+    public ExcelDataOutputAdapterImpl() {
     }
 
     public void open(URL url) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void open(String url) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void init() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -35,4 +36,3 @@ public class OOoOutputAdapterImpl implements DataOutputAdapter {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
-
