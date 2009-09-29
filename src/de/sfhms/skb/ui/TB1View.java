@@ -2,7 +2,7 @@
  * TB1View.java
  */
 
-package tb1;
+package de.sfhms.skb.ui;
 
 import org.jdesktop.application.Action;
 import org.jdesktop.application.ResourceMap;
@@ -127,11 +127,11 @@ public class TB1View extends FrameView {
 
         menuBar.setName("menuBar"); // NOI18N
 
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(tb1.TB1App.class).getContext().getResourceMap(TB1View.class);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(de.sfhms.skb.ui.TB1App.class).getContext().getResourceMap(TB1View.class);
         fileMenu.setText(resourceMap.getString("fileMenu.text")); // NOI18N
         fileMenu.setName("fileMenu"); // NOI18N
 
-        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(tb1.TB1App.class).getContext().getActionMap(TB1View.class, this);
+        javax.swing.ActionMap actionMap = org.jdesktop.application.Application.getInstance(de.sfhms.skb.ui.TB1App.class).getContext().getActionMap(TB1View.class, this);
         exitMenuItem.setAction(actionMap.get("quit")); // NOI18N
         exitMenuItem.setName("exitMenuItem"); // NOI18N
         fileMenu.add(exitMenuItem);

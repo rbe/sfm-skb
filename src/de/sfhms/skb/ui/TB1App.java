@@ -2,7 +2,7 @@
  * TB1App.java
  */
 
-package tb1;
+package de.sfhms.skb.ui;
 
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;

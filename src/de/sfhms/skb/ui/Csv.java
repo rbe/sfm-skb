@@ -1,4 +1,4 @@
-package tb1;
+package de.sfhms.skb.ui;
 
 import java.io.BufferedReader;
 import java.io.File;
