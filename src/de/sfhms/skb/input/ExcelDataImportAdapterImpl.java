@@ -38,7 +38,17 @@ public class ExcelDataImportAdapterImpl implements DataImportAdapter {
         Sheet wbSheet = workbook.getSheetAt(sheet);
         Row wbRow = wbSheet.getRow(row);
         Cell cell = wbRow.getCell(column);
-        return new MyCell(sheet + "$" + row + column, cell.getNumericCellValue());
+        int cellType = cell.getCellType();
+        Object obj = null;
+        switch (cellType) {
+            case Cell.CELL_TYPE_NUMERIC:
+                obj = cell.getNumericCellValue();
+                break;
+            case Cell.CELL_TYPE_STRING:
+                obj = cell.getStringCellValue();
+                break;
+        }
+        return new MyCell(sheet + "$" + row + column, obj);
     }
 
     public long getRowCount(int sheet) {
