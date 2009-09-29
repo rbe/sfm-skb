@@ -3,34 +3,86 @@ package de.sfhms.skb.input;
 import de.sfhms.skb.model.MyCell;
 import java.net.URL;
 
-// <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-// #[regen=yes,id=DCE.126CD7B1-25C5-EDEE-6CE4-9523E0CC713A]
-// </editor-fold> 
 public interface DataImportAdapter {
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.EB77521D-0DFF-8125-BFF3-79A3EFCEF6E6]
-    // </editor-fold> 
+    /**
+     * Open a datasource.
+     * @param url
+     */
     public void open(URL url);
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.F7E98273-E063-522A-8023-6D60F241E0C7]
-    // </editor-fold> 
-    public void getCell(int row, int col, Class type);
+    /**
+     * Open a datasource.
+     * @param url
+     */
+    public void open(String url);
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.84DCC9F2-CE6C-5FD5-295F-E8451E52D35F]
-    // </editor-fold> 
-    public int getRowCount();
+    /**
+     * Initialization for concrete file after opening/loading.
+     */
+    public void init();
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.6AD4068C-266D-8F70-5EFC-8182C3D001F8]
-    // </editor-fold> 
-    public int getColumnCount();
+    /**
+     * Get cell value by sheet, row and column.
+     * @param sheet
+     * @param row
+     * @param column
+     * @param type
+     */
+    public MyCell getCell(int sheet, int row, int column);
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.BDBC9A2F-CC7D-316D-55E8-F14CD374BF8C]
-    // </editor-fold> 
-    public MyCell[][] getCellRange();
+    /**
+     * Convenience method: get cell by row, column. Use default value for sheet.
+     * @param row
+     * @param column
+     * @return
+     */
+    public MyCell getCell(int row, int column);
+
+    /**
+     * Get row count for a certain sheet.
+     * @param sheet
+     * @return
+     */
+    public long getRowCount(int sheet);
+
+    /**
+     * Convenience method: get row count for default sheet.
+     * @return
+     */
+    public long getRowCount();
+
+    /**
+     * Get column count for a certain sheet.
+     * @param sheet
+     * @return
+     */
+    public long getColumnCount(int sheet);
+
+    /**
+     * Convenience method: get column count for default sheet.
+     * @return
+     */
+    public long getColumnCount();
+
+    /**
+     *
+     * @param sheet
+     * @param startRow
+     * @param startColumn
+     * @param endRow
+     * @param endColumn
+     * @return
+     */
+    public MyCell[][] getCellRange(int sheet, int startRow, int startColumn, int endRow, int endColumn);
+
+    /**
+     *
+     * @param startRow
+     * @param startColumn
+     * @param endRow
+     * @param endColumn
+     * @return
+     */
+    public MyCell[][] getCellRange(int startRow, int startColumn, int endRow, int endColumn);
 }
-

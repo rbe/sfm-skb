@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <skb>
     <job name="GCH">
-        <plugin name="" class="">
-            <datasource name="ds1" url=""/>
-        </plugin>
+        <datasource name="ds1" url=""/>
+        <input>
+            <plugin class="">
+            </plugin>
+        </input>
+        <!-- nach input via plugins stehen vars bereit -->
         <output url="">
-            <map plugin-name="" var-name="" row="" col=""/>
+            <plugin class="">
+            </plugin>
+            <!--map plugin-name="" var-name="" row="" col=""/-->
         </output>
     </job>
 </skb>
