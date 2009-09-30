@@ -1,8 +1,7 @@
 package de.sfhms.skb.processor.plugin;
 
-import de.sfhms.skb.processor.*;
 import de.sfhms.skb.SkbConfig;
-import de.sfhms.skb.jaxb.config.Skb;
+import de.sfhms.skb.processor.ProcessorException;
 import de.sfhms.skb.processor.plugin.dept.DeptPluginStrategy;
 import de.sfhms.skb.processor.plugin.input.akvd.GCHDeptImpl;
 import java.util.HashMap;
@@ -13,8 +12,6 @@ public abstract class AbstractPlugin {
 
     protected static final Logger logger;
     protected final SkbConfig config;
-    protected final Skb.Job actualJob;
-    protected final String actualJobName;
     private final Map<String, Object> map;
 
     static {
@@ -24,8 +21,6 @@ public abstract class AbstractPlugin {
     public AbstractPlugin() {
         map = new HashMap<String, Object>();
         config = SkbConfig.getInstance();
-        actualJob = config.getActualJob();
-        actualJobName = actualJob.getName();
     }
 
     public abstract void execute() throws ProcessorException;
@@ -34,7 +29,7 @@ public abstract class AbstractPlugin {
 
     public void fireDepartmentPlugin() throws ProcessorException {
         DeptPluginStrategy ps = null;
-        if (actualJobName.equals("GCH")) {
+        if (config.getActualJobName().equals("GCH")) {
             ps = new GCHDeptImpl(this);
         }
         ps.execute();

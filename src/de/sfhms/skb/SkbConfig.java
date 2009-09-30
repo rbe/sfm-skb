@@ -6,6 +6,7 @@ public class SkbConfig {
 
     private Skb config;
     private Skb.Job actualJob;
+    private String actualJobName;
 
     /**
      * Initalization-on-demand-holder Idiom
@@ -41,6 +42,11 @@ public class SkbConfig {
 
     public void setActualJob(Skb.Job actualJob) {
         this.actualJob = actualJob;
+        actualJobName = actualJob.getName();
+    }
+
+    public String getActualJobName() {
+        return actualJobName;
     }
 
     public Skb.Job getJobByName(String name) {
