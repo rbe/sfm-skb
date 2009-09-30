@@ -19,10 +19,10 @@ public class AkvdInputPlugin extends AbstractPlugin {
             // Load Excel sheet
             String url = config.getDatasourceByName(config.getActualJob(), "akvd").getUrl();
             DataImportAdapter excel = DataImportFactory.createExcelImportAdapter(new URL(url));
+            // Create datamodel
             // Get cell value
             System.out.println("" + excel.getCell(0, 0, 0).getValue());
             // Calculate...
-            // Create datamodel
             // Fire plugin for certain department
             fireDepartmentPlugin();
         } catch (MalformedURLException ex) {
@@ -34,9 +34,4 @@ public class AkvdInputPlugin extends AbstractPlugin {
     public void persist() throws ProcessorException {
         System.out.println(getVar("AKVD_TEST"));
     }
-//    public static void main(String[] args) {
-//        AkvdInputPlugin test = new AkvdInputPlugin();
-//        test.execute();
-//
-//    }
 }

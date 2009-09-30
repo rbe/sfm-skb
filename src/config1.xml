@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <skb xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\project\FACT\SKB\src\config.xsd">
     <job name="GCH">
+        <dept name="GCH" fab="HA1800"/>
         <datasource name="akvd" url="file:///c:/test.xls" />
         <datasource name="ppr" url="file:///c:/test.csv" />
+        <datasource name="mysql" url="jdbc:mysql://localhost/skb"/>
         <input>
             <plugin class="de.sfhms.skb.processor.plugin.AkvdInputPlugin" />
             <plugin class="de.sfhms.skb.processor.plugin.PprInputPlugin" />
