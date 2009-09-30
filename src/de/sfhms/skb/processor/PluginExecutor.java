@@ -28,7 +28,7 @@ public class PluginExecutor {
                 ap.execute();
                 ap.persist();
             } catch (Exception e) {
-                throw new ProcessorException("Could not execute plugins for input job " + actualJob.getName(), e);
+                throw new ProcessorException("Could not execute plugins " + p.getClazz() + " for input job " + actualJob.getName(), e);
             }
         }
     }

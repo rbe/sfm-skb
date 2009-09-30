@@ -28,7 +28,7 @@ public abstract class AbstractPlugin {
         return map.get(name);
     }
 
-    protected void setVar(String name, Object value) {
+    public void setVar(String name, Object value) {
         map.put(name, value);
     }
 }

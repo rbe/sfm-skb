@@ -3,6 +3,7 @@ package de.sfhms.skb.processor.plugin;
 import de.sfhms.skb.input.DataImportAdapter;
 import de.sfhms.skb.input.DataImportFactory;
 import de.sfhms.skb.processor.AbstractPlugin;
+import de.sfhms.skb.processor.plugin.akvd.GCH;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -23,7 +24,11 @@ public class AkvdInputPlugin extends AbstractPlugin {
             System.out.println("" + excel.getCell(0, 0, 0).getValue());
             // Calculate...
             // Set var
-            setVar("AKVD_TEST", 1.053);
+            PluginStrategy ps = null;
+            if (config.getActualJob().getName().equals("GCH")) {
+                ps = new GCH(this);
+            }
+            ps.execute();
         } catch (MalformedURLException ex) {
             logger.log(Level.SEVERE, "Could not open Excel file", ex);
         }
@@ -31,7 +36,7 @@ public class AkvdInputPlugin extends AbstractPlugin {
 
     @Override
     public void persist() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        System.out.println(getVar("AKVD_TEST"));
     }
 //    public static void main(String[] args) {
 //        AkvdInputPlugin test = new AkvdInputPlugin();
