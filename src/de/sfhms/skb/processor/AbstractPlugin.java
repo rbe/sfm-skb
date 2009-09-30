@@ -7,13 +7,15 @@ import java.util.logging.Logger;
 public abstract class AbstractPlugin {
 
     protected static final Logger logger;
-    private Map<String, Object> map;
+    protected final String jobName;
+    private final Map<String, Object> map;
 
     static {
         logger = Logger.getLogger(PluginExecutor.class.getName());
     }
 
-    public AbstractPlugin() {
+    public AbstractPlugin(String jobName) {
+        this.jobName = jobName;
         map = new HashMap<String, Object>();
     }
 

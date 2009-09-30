@@ -1,16 +1,48 @@
 package de.sfhms.skb;
 
+import de.sfhms.skb.jaxb.config.Skb;
+import java.util.List;
 
-// <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-// #[regen=yes,id=DCE.4DF5C073-E123-7A84-6901-211DA3D35C93]
-// </editor-fold> 
-public class SKBConfig {
+public class SkbConfig {
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.6BB63DBE-97E5-8D34-0804-F1A8B76D69E9]
-    // </editor-fold> 
-    public SKBConfig () {
+    private Skb config;
+
+    /**
+     * Initalization-on-demand-holder Idiom
+     */
+    private static class Holder {
+
+        private static final SkbConfig INSTANCE = new SkbConfig();
     }
 
-}
+    private SkbConfig() {
+        config = new Skb();
+        try {
+            javax.xml.bind.JAXBContext jaxbCtx = javax.xml.bind.JAXBContext.newInstance(config.getClass().getPackage().getName());
+            javax.xml.bind.Unmarshaller unmarshaller = jaxbCtx.createUnmarshaller();
+            config = (Skb) unmarshaller.unmarshal(SkbConfig.class.getResourceAsStream("/config1.xml")); //NOI18N
+            System.out.println("" + config.getJob().get(0).getName());
+        } catch (javax.xml.bind.JAXBException ex) {
+            java.util.logging.Logger.getLogger("global").log(java.util.logging.Level.SEVERE, null, ex); //NOI18N
+        }
+    }
 
+    public static SkbConfig getInstance() {
+        return Holder.INSTANCE;
+    }
+
+    public Skb getConfig() {
+        return config;
+    }
+
+    public Skb.Job getJobByName(String name) {
+        Skb.Job r = null;
+        for (Skb.Job job : config.getJob()) {
+            if (name.equals(job.getName())) {
+                r = job;
+                break;
+            }
+        }
+        return r;
+    }
+}

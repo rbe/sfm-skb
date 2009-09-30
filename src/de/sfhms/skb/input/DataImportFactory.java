@@ -15,13 +15,6 @@ public class DataImportFactory {
     private DataImportFactory() {
     }
 
-//    // Initalization-on-demand-holder Idiom
-//    private static class Holder {
-//        private static final DataImportFactory INSTANCE = new DataImportFactory();
-//    }
-//    public static DataImportFactory getInstance() {
-//        return Holder.INSTANCE;
-//    }
     public synchronized static DataImportAdapter createCsvImportAdapter(URL url) {
         DataImportAdapter a = cache.get(url);
         if (null == a) {

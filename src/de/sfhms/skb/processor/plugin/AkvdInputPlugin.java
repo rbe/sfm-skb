@@ -13,6 +13,10 @@ import java.util.logging.Level;
  */
 public class AkvdInputPlugin extends AbstractPlugin {
 
+    public AkvdInputPlugin(String jobName) {
+        super(jobName);
+    }
+
     @Override
     public void execute() {
         try {
@@ -22,6 +26,7 @@ public class AkvdInputPlugin extends AbstractPlugin {
             System.out.println("" + excel.getCell(0, 0, 0).getValue());
             // Calculate...
             // Set var
+            setVar("AKVD_TEST", 1.053);
         } catch (MalformedURLException ex) {
             logger.log(Level.SEVERE, "Could not open Excel file", ex);
         }
@@ -31,7 +36,6 @@ public class AkvdInputPlugin extends AbstractPlugin {
     public void persist() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
 //    public static void main(String[] args) {
 //        AkvdInputPlugin test = new AkvdInputPlugin();
 //        test.execute();
