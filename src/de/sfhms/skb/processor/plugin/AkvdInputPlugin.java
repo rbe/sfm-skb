@@ -13,15 +13,12 @@ import java.util.logging.Level;
  */
 public class AkvdInputPlugin extends AbstractPlugin {
 
-    public AkvdInputPlugin(String jobName) {
-        super(jobName);
-    }
-
     @Override
     public void execute() {
         try {
             // Load Excel sheet
-            DataImportAdapter excel = DataImportFactory.createExcelImportAdapter(new URL("file:///c:/test.xls"));
+            String url = config.getDataSourceByName(config.getActualJob(), "akvd").getUrl();
+            DataImportAdapter excel = DataImportFactory.createExcelImportAdapter(new URL(url));
             // Get cell value
             System.out.println("" + excel.getCell(0, 0, 0).getValue());
             // Calculate...

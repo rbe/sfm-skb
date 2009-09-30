@@ -1,9 +1,7 @@
 package de.sfhms.skb.processor.plugin;
 
-import de.sfhms.skb.SkbConfig;
 import de.sfhms.skb.input.DataImportAdapter;
 import de.sfhms.skb.input.DataImportFactory;
-import de.sfhms.skb.jaxb.config.Skb;
 import de.sfhms.skb.processor.AbstractPlugin;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -13,19 +11,14 @@ import java.util.logging.Level;
  *
  * @author brandes
  */
-public class PprPlugIn extends AbstractPlugin {
-
-    public PprPlugIn(String jobName) {
-        super(jobName);
-    }
+public class PprInputPlugin extends AbstractPlugin {
 
     @Override
     public void execute() {
         try {
-            // Load Excel sheet
-            // Skb.Job job = SkbConfig.getInstance().getJobByName(jobName);
-            // TODO TBR SkbConfig().getInstance().getDatasourceByName();
-            DataImportAdapter csv = DataImportFactory.createCsvImportAdapter(new URL("file:///c:/test.csv"));
+            // Load CSV file
+            String url = config.getDataSourceByName(config.getActualJob(), "ppr").getUrl();
+            DataImportAdapter csv = DataImportFactory.createCsvImportAdapter(new URL(url));
             // Get cell value
             //System.out.println("" + csv.getCell(0, 0, 0).getValue());
             // Calculate...

@@ -1,5 +1,6 @@
 package de.sfhms.skb.processor;
 
+import de.sfhms.skb.SkbConfig;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -7,16 +8,16 @@ import java.util.logging.Logger;
 public abstract class AbstractPlugin {
 
     protected static final Logger logger;
-    protected final String jobName;
+    protected final SkbConfig config;
     private final Map<String, Object> map;
 
     static {
         logger = Logger.getLogger(PluginExecutor.class.getName());
     }
 
-    public AbstractPlugin(String jobName) {
-        this.jobName = jobName;
+    public AbstractPlugin() {
         map = new HashMap<String, Object>();
+        config = SkbConfig.getInstance();
     }
 
     public abstract void execute();

@@ -1,11 +1,11 @@
 package de.sfhms.skb;
 
 import de.sfhms.skb.jaxb.config.Skb;
-import java.util.List;
 
 public class SkbConfig {
 
     private Skb config;
+    private Skb.Job actualJob;
 
     /**
      * Initalization-on-demand-holder Idiom
@@ -33,6 +33,14 @@ public class SkbConfig {
 
     public Skb getConfig() {
         return config;
+    }
+
+    public Skb.Job getActualJob() {
+        return actualJob;
+    }
+
+    public void setActualJob(Skb.Job actualJob) {
+        this.actualJob = actualJob;
     }
 
     public Skb.Job getJobByName(String name) {

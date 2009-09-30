@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <skb xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="D:\project\FACT\SKB\src\config.xsd">
-    <job name="string">
-        <datasource name="ppr" url="string" />
+    <job name="GCH">
+        <datasource name="akvd" url="file:///c:/test.xls" />
+        <datasource name="ppr" url="file:///c:/test.csv" />
         <input>
-            <plugin class="de.sfhms.skb.processor.plugin.PprPlugin" />
+            <plugin class="de.sfhms.skb.processor.plugin.AkvdInputPlugin" />
+            <plugin class="de.sfhms.skb.processor.plugin.PprInputPlugin" />
         </input>
         <output>
             <plugin class="string" />

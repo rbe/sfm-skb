@@ -1,16 +1,18 @@
 package de.sfhms.skb;
 
+import de.sfhms.skb.processor.PluginExecutor;
+import de.sfhms.skb.processor.ProcessorException;
 
-// <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-// #[regen=yes,id=DCE.AEF45F16-0FF8-54AB-683C-27ED8E64A2AA]
-// </editor-fold> 
 public class SkbFacade {
 
-    // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
-    // #[regen=yes,id=DCE.C0A3B1E5-152C-0DEF-EB83-94AC08E34375]
-    // </editor-fold> 
-    public SkbFacade () {
+    public SkbFacade() {
     }
 
+    public static void main(String[] args) throws ProcessorException {
+        SkbConfig config = SkbConfig.getInstance();
+        config.setActualJob(config.getJobByName("GCH"));
+        PluginExecutor pe = new PluginExecutor();
+        pe.fireInputPlugins();
+    }
 }
 
