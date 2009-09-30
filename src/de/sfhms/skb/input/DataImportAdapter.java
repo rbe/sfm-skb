@@ -1,6 +1,7 @@
 package de.sfhms.skb.input;
 
 import de.sfhms.skb.model.MyCell;
+import de.sfhms.skb.model.MyDatamodel;
 import java.net.URL;
 
 public interface DataImportAdapter {
@@ -36,14 +37,14 @@ public interface DataImportAdapter {
      * @param sheet
      * @return
      */
-    public long getRowCount(int sheet);
+    public int getRowCount(int sheet);
 
     /**
      * Get column count for a certain sheet/certain row.
      * @param sheet
      * @return
      */
-    public long getColumnCount(int sheet, int row);
+    public int getColumnCount(int sheet, int row);
 
     /**
      *
@@ -54,5 +55,12 @@ public interface DataImportAdapter {
      * @param endColumn
      * @return
      */
-    public MyCell[][] getCellRange(int sheet, int startRow, int startColumn, int endRow, int endColumn);
+    public MyDatamodel getCellRange(int sheet, int startRow, int startColumn, int endRow, int endColumn);
+
+    /**
+     * 
+     * @param sheetNumber
+     * @return
+     */
+    public MyDatamodel getMyDatamodel(int sheet);
 }

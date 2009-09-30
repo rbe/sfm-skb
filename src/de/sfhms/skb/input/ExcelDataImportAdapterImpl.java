@@ -1,6 +1,8 @@
 package de.sfhms.skb.input;
 
 import de.sfhms.skb.model.MyCell;
+import de.sfhms.skb.model.MyDatamodel;
+import de.sfhms.skb.model.MyRow;
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -19,6 +21,7 @@ public class ExcelDataImportAdapterImpl implements DataImportAdapter {
     public ExcelDataImportAdapterImpl() {
     }
 
+    @Override
     public void open(URL url) {
         try {
             workbook = WorkbookFactory.create(new POIFSFileSystem(url.openStream()));
@@ -27,13 +30,16 @@ public class ExcelDataImportAdapterImpl implements DataImportAdapter {
         }
     }
 
+    @Override
     public void open(String url) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    @Override
     public void init() {
     }
 
+    @Override
     public MyCell getCell(int sheet, int row, int column) {
         Sheet wbSheet = workbook.getSheetAt(sheet);
         Row wbRow = wbSheet.getRow(row);
@@ -51,17 +57,38 @@ public class ExcelDataImportAdapterImpl implements DataImportAdapter {
         return new MyCell(sheet + "$" + row + column, obj);
     }
 
-    public long getRowCount(int sheet) {
+    @Override
+    public int getRowCount(int sheet) {
         return workbook.getSheetAt(sheet).getLastRowNum() + 1;
     }
 
-    public long getColumnCount(int sheet, int row) {
+    @Override
+    public int getColumnCount(int sheet, int row) {
         Sheet wbSheet = workbook.getSheetAt(sheet);
         return wbSheet.getRow(wbSheet.getLastRowNum()).getLastCellNum();
     }
 
-    public MyCell[][] getCellRange(int sheet, int startRow, int startColumn, int endRow, int endColumn) {
+    @Override
+    public MyDatamodel getCellRange(int sheet, int startRow, int startColumn, int endRow, int endColumn) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-}
 
+    @Override
+    public MyDatamodel getMyDatamodel(int sheet) {
+        // Check arguments
+        if (sheet < 0) {
+            throw new IllegalArgumentException("negative index!");
+        }
+        //
+        int rows = getRowCount(sheet);
+        MyDatamodel model = new MyDatamodel();
+        for (int r = 0; r < rows; r++) {
+            MyRow row = new MyRow();
+            for (int col = 0; col < getColumnCount(sheet, r); col++) {
+                row.addCell(getCell(sheet, r, col));
+            }
+            model.addRow(row);
+        }
+        return model;
+    }
+}

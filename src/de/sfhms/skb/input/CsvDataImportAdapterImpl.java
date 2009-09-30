@@ -2,6 +2,8 @@ package de.sfhms.skb.input;
 
 import au.com.bytecode.opencsv.CSVReader;
 import de.sfhms.skb.model.MyCell;
+import de.sfhms.skb.model.MyDatamodel;
+import de.sfhms.skb.model.MyRow;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -13,11 +15,12 @@ import java.util.logging.Logger;
 
 public class CsvDataImportAdapterImpl implements DataImportAdapter {
 
-    CSVReader reader = null;
+    private CSVReader reader;
 
     public CsvDataImportAdapterImpl() {
     }
 
+    @Override
     public void open(URL url) {
         try {
             reader = new CSVReader(new FileReader(new File(url.toURI())), ';');
@@ -28,36 +31,52 @@ public class CsvDataImportAdapterImpl implements DataImportAdapter {
         }
     }
 
+    @Override
     public void open(String url) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    @Override
     public void init() {
-        String[] nextLine;
-        try {
-            while ((nextLine = reader.readNext()) != null) {
-                // nextLine[] is an array of values from the line
-                System.out.println(nextLine.length);
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(CsvDataImportAdapterImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
+    @Override
     public MyCell getCell(int sheet, int row, int column) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public long getRowCount(int sheet) {
+    @Override
+    public int getRowCount(int sheet) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public long getColumnCount(int sheet, int row) {
+    @Override
+    public int getColumnCount(int sheet, int row) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public MyCell[][] getCellRange(int sheet, int startRow, int startColumn, int endRow, int endColumn) {
+    @Override
+    public MyDatamodel getCellRange(int sheet, int startRow, int startColumn, int endRow, int endColumn) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public MyDatamodel getMyDatamodel(int sheet) {
+        MyDatamodel model = new MyDatamodel();
+        String[] line = null;
+        try {
+            // TODO Read first line for header names?
+            while ((line = reader.readNext()) != null) {
+                MyRow row = new MyRow();
+                for (int col = 0; col < line.length; col++) {
+                    MyCell cell = new MyCell(null, line[col]);
+                    row.addCell(cell);
+                }
+                model.addRow(row);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(CsvDataImportAdapterImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return model;
     }
 }
-

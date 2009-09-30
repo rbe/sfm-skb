@@ -2,6 +2,7 @@ package de.sfhms.skb.processor.plugin.input;
 
 import de.sfhms.skb.input.DataImportAdapter;
 import de.sfhms.skb.input.DataImportFactory;
+import de.sfhms.skb.model.MyRow;
 import de.sfhms.skb.processor.plugin.AbstractPlugin;
 import de.sfhms.skb.processor.ProcessorException;
 import java.net.MalformedURLException;
@@ -21,7 +22,11 @@ public class AkvdInputPlugin extends AbstractPlugin {
             DataImportAdapter excel = DataImportFactory.createExcelImportAdapter(new URL(url));
             // Create datamodel
             // Get cell value
-            System.out.println("" + excel.getCell(0, 0, 0).getValue());
+            MyRow[] row = excel.getMyDatamodel(0).findRowByValue(config.getActualJob().getDept().getFab());
+            if (row.length > 0) {
+                System.out.println("Akvd: row#0 cell#1: " + row[0].getCell(1).getValue());
+            }
+            System.out.println("Akvd: row#0 cell#0: " + excel.getCell(0, 0, 0).getValue());
             // Calculate...
             // Fire plugin for certain department
             fireDepartmentPlugin();

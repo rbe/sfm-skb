@@ -6,8 +6,8 @@
         <datasource name="ppr" url="file:///c:/test.csv" />
         <datasource name="mysql" url="jdbc:mysql://localhost/skb"/>
         <input>
-            <plugin class="de.sfhms.skb.processor.plugin.AkvdInputPlugin" />
-            <plugin class="de.sfhms.skb.processor.plugin.PprInputPlugin" />
+            <plugin class="de.sfhms.skb.processor.plugin.input.AkvdInputPlugin" />
+            <plugin class="de.sfhms.skb.processor.plugin.input.PprInputPlugin" />
         </input>
         <output>
             <plugin class="string" />

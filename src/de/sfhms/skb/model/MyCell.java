@@ -38,7 +38,7 @@ public final class MyCell {
     }
 
     public String getValueAsString() {
-        return "" + value;
+        return String.valueOf(value);
     }
 
     public void setValue(Object value) {

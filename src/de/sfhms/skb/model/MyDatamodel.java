@@ -42,4 +42,31 @@ public class MyDatamodel {
     public long getRowCount() {
         return rows.size();
     }
+
+    public MyRow[] findRowByValue(Object value, String... columnName) {
+        // Check arguments
+        if (null == value) {
+            throw new IllegalArgumentException("Null argument!");
+        }
+        //
+        List<MyRow> list = new ArrayList<MyRow>();
+        for (MyRow row : rows) {
+            for (MyCell cell : row.getCells()) {
+                boolean b = cell.getValue().equals(value);
+                if (null != columnName && columnName.length > 0) {
+                    for (String n : columnName) {
+                        if (cell.getName().equals(n)) {
+                            list.add(row);
+                            break;
+                        }
+                    }
+                } else if (b) {
+                    list.add(row);
+                    break;
+                }
+            }
+        }
+        //
+        return list.toArray(new MyRow[list.size()]);
+    }
 }
