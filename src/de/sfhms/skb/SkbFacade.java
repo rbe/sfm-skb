@@ -1,6 +1,6 @@
 package de.sfhms.skb;
 
-import de.sfhms.skb.processor.PluginExecutor;
+import de.sfhms.skb.processor.plugin.PluginExecutor;
 import de.sfhms.skb.processor.ProcessorException;
 
 public class SkbFacade {

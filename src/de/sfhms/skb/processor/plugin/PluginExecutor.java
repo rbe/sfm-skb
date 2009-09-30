@@ -1,5 +1,6 @@
-package de.sfhms.skb.processor;
+package de.sfhms.skb.processor.plugin;
 
+import de.sfhms.skb.processor.*;
 import de.sfhms.skb.SkbConfig;
 import de.sfhms.skb.jaxb.config.Skb;
 import java.util.List;

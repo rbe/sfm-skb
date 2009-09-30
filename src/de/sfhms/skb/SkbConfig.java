@@ -54,7 +54,7 @@ public class SkbConfig {
         return r;
     }
 
-    public Skb.Job.Datasource getDataSourceByName(Skb.Job job, String name) {
+    public Skb.Job.Datasource getDatasourceByName(Skb.Job job, String name) {
         Skb.Job.Datasource r = null;
         for (Skb.Job.Datasource ds : job.getDatasource()) {
             if (name.equals(ds.getName())) {

@@ -1,5 +1,7 @@
 package de.sfhms.skb.processor;
 
+import de.sfhms.skb.processor.plugin.PluginExecutor;
+
 public class DataProcessorFacade {
 
     private PluginExecutor pluginExecutor;

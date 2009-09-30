@@ -1,8 +1,9 @@
-package de.sfhms.skb.processor.plugin;
+package de.sfhms.skb.processor.plugin.input;
 
 import de.sfhms.skb.input.DataImportAdapter;
 import de.sfhms.skb.input.DataImportFactory;
-import de.sfhms.skb.processor.AbstractPlugin;
+import de.sfhms.skb.processor.plugin.AbstractPlugin;
+import de.sfhms.skb.processor.ProcessorException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -14,10 +15,10 @@ import java.util.logging.Level;
 public class PprInputPlugin extends AbstractPlugin {
 
     @Override
-    public void execute() {
+    public void execute() throws ProcessorException {
         try {
             // Load CSV file
-            String url = config.getDataSourceByName(config.getActualJob(), "ppr").getUrl();
+            String url = config.getDatasourceByName(config.getActualJob(), "ppr").getUrl();
             DataImportAdapter csv = DataImportFactory.createCsvImportAdapter(new URL(url));
             // Get cell value
             //System.out.println("" + csv.getCell(0, 0, 0).getValue());
@@ -30,7 +31,7 @@ public class PprInputPlugin extends AbstractPlugin {
     }
 
     @Override
-    public void persist() {
+    public void persist() throws ProcessorException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

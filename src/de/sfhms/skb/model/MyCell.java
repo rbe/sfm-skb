@@ -1,11 +1,14 @@
 package de.sfhms.skb.model;
 
-public class MyCell {
+public final class MyCell {
 
     private String name;
     private Object value;
 
     public MyCell(String name, Object value) {
+        if (null == name && (null != name && name.length() == 0)) {
+            throw new IllegalArgumentException("Null or empty argument!");
+        }
         this.name = name;
         this.value = value;
     }
