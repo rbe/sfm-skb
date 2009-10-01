@@ -16,4 +16,3 @@ public class SkbFacade {
         pe.fireInputPlugins();
     }
 }
-

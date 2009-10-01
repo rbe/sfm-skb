@@ -57,6 +57,8 @@ public class ExcelDataImportAdapterImpl implements DataImportAdapter {
                     break;
             }
             myCell = new MyCell(sheet + "$" + row + column, obj);
+        } else {
+            myCell = new MyCell(sheet + "$" + row + column, null);
         }
         return myCell;
     }
@@ -99,6 +101,8 @@ public class ExcelDataImportAdapterImpl implements DataImportAdapter {
                     row.addCell(getCell(sheet, r, col));
                 }
                 model.addRow(row);
+            } else {
+                model.addRow(new MyRow());
             }
         }
         return model;
