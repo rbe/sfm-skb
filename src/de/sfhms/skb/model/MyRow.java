@@ -42,4 +42,12 @@ public final class MyRow {
     public void setCell(MyCell cell, int index) {
         cells.set(index, cell);
     }
+
+    public void removeCell(MyCell cell) {
+        cells.remove(cell);
+    }
+
+    public void removeCell(int index) {
+        cells.remove(index);
+    }
 }
