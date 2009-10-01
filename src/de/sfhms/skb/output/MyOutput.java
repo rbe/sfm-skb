@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Types;
 
 /**
  * @author rbe
@@ -17,10 +18,10 @@ public class MyOutput {
     private static SkbConfig config;
     private static Connection verbindung;
 
-    public static void toDatabase(MyDatamodel model,MyCell date) throws SQLException {
+    public static void toDatabase(MyDatamodel model, MyCell date, Boolean autoincrement) throws SQLException {
         //Übertragung des Model in die Datenbank
         PreparedStatement pstmt = null;
-        //verbindung = openDB();
+        verbindung = openDB();
         //
         MyRow row0 = model.getRow(0);
         StringBuilder builder = new StringBuilder("INSERT INTO ");
@@ -31,12 +32,22 @@ public class MyOutput {
                 builder.append(", ");
             }
         }
+        //
+        builder.append(", ").append(date.getName());
+        if (autoincrement) {
+            builder.append(", ID");
+        }
         builder.append(") VALUES (");
         for (int i = 0; i < row0.getCellCount(); i++) {
             builder.append("?");
             if (i < row0.getCellCount() - 1) {
                 builder.append(", ");
             }
+        }
+        //
+        builder.append(", ?");
+        if (autoincrement) {
+            builder.append(", ?");
         }
         builder.append(")");
         System.out.println(builder.toString());
@@ -45,21 +56,20 @@ public class MyOutput {
                 System.out.println((i + 1) + " " + row.getCell(i).getName() + ": " + row.getCell(i).getValue().toString());
             }
         }
-//        pstmt = verbindung.prepareStatement(" Values (NULL, ?, ?, ?, ?, ?, ?, ?);");
-//        for (MyRow row : model.getRows()) {
-//            for (int i=0;i<row.getCellCount();i++){
-//                pstmt.setObject(i+1, row.getCell(i).getValue());
-//            }
-////            pstmt.setString(1, row.getCell(0).getValueAsString());
-////            pstmt.setDouble(2, row.getCell(1).getValueAsDouble());
-////            pstmt.setDouble(3, row.getCell(2).getValueAsDouble());
-////            pstmt.setDouble(4, row.getCell(3).getValueAsDouble());
-////            pstmt.setDouble(5, row.getCell(4).getValueAsDouble());
-////            pstmt.setDate(6, row.getCell(5).getValue().);
-////            pstmt.setString(7,"");
-//         //   pstmt.executeQuery();
-//        }
-//        pstmt.close();
+        pstmt = verbindung.prepareStatement(builder.toString());
+        for (MyRow row : model.getRows()) {
+            for (int i = 0; i < row.getCellCount(); i++) {
+                pstmt.setObject(i + 1, row.getCell(i).getValue());
+                System.out.println((i + 1) + " " + row.getCell(i).getValue().toString());
+            }
+            pstmt.setObject((int) row.getCellCount() + 1, date.getValue());
+            System.out.println((row.getCellCount() + 1) + " " + date.getValue().toString());
+            if (autoincrement) {
+                pstmt.setNull((int)row.getCellCount() + 2, Types.INTEGER);
+            }
+            pstmt.executeUpdate();
+        }
+        pstmt.close();
 
 
         //PPR

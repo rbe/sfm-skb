@@ -7,6 +7,7 @@ import de.sfhms.skb.output.MyOutput;
 import de.sfhms.skb.processor.ProcessorException;
 import de.sfhms.skb.processor.plugin.PluginExecutor;
 import java.sql.SQLException;
+import java.util.Date;
 
 public class SkbFacade {
 
@@ -21,7 +22,7 @@ public class SkbFacade {
 //        PluginExecutor pe = new PluginExecutor();
 //        pe.fireInputPlugins();
         MyDatamodel model = new MyDatamodel();
-        model.setName("Test");
+        model.setName("test");
         MyRow r1 = new MyRow();
         MyCell d1 = new MyCell("Name", "Czigalla");
         MyCell d2 = new MyCell("Vorname", "Sebastian");
@@ -61,7 +62,7 @@ public class SkbFacade {
         r4.addCell(f3);
         r4.addCell(new MyCell("Ort", "Münster"));
         model.addRow(r4);
-        MyOutput.toDatabase(model);
+        MyOutput.toDatabase(model, new MyCell("Datum", new Date()), true);
     }
 }
 
