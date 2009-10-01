@@ -9,6 +9,7 @@ import java.util.List;
  */
 public class MyDatamodel {
 
+    private String name;
     private List<MyRow> rows;
 
     public MyDatamodel() {
@@ -17,6 +18,14 @@ public class MyDatamodel {
 
     public MyDatamodel(List<MyRow> rows) {
         this.rows = rows;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<MyRow> getRows() {
