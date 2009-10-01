@@ -23,41 +23,51 @@ public class CognosInputPlugin extends AbstractPlugin {
 
     @Override
     public MyDatamodel execute() throws ProcessorException {
-        MyDatamodel model = null;
+        List<MyRow> rows = new ArrayList<MyRow>();
         try {
             // Load Excel sheet
             String url = config.getDatasourceByName(config.getActualJob(), "cognos").getUrl();
             DataImportAdapter excel = DataImportFactory.createExcelImportAdapter(new URL(url));
             // Create datamodel
-            model = excel.getMyDatamodel(0);
-            List<MyRow> row = new ArrayList<MyRow>();
+            MyDatamodel model = excel.getMyDatamodel(0);
             String temp = null;
+            // Skip first 9 rows
             for (int i = 9; i < (int) model.getRowCount(); i++) {
+                MyRow row = model.getRow(i);
                 // Check first cell
-                MyCell cell0 = model.getRow(i).getCell(0);
+                MyCell cell0 = row.getCell(0);
                 if (null != cell0.getValue()) {
                     temp = cell0.getValueAsString();
                 } else {
                     cell0.setValue(temp);
                 }
-                row.add(model.getRow(i));
+                //Set cell names
+                row.getCell(0).setName("Kostenart");
+                row.getCell(1).setName("Bezeichnung");
+                row.getCell(2).setName("kumGCH");
+                row.getCell(3).setName("kumPflegeBereich");
+                row.getCell(4).setName("kumDSA");
+                row.getCell(5).setName("kumOP");
+                row.getCell(6).setName("kumOP6");
+                row.getCell(7).setName("kumDSAZOP");
+                row.getCell(8).setName("MonatGCH");
+                row.getCell(9).setName("MonatPflegeBereich");
+                row.getCell(10).setName("MonatDSA");
+                row.getCell(11).setName("MonatOP");
+                row.getCell(12).setName("MonatOP6");
+                row.getCell(13).setName("MonatDSAZOP");
+                //
+                rows.add(row);
             }
-//            if (row.length == 1) {
-//                model = new MyDatamodel();
-//                model.setName("akvd");
-//                row[0].getCell(0).setName("FAB");
-//                row[0].getCell(1).setName("PKTVWD");
-//                row[0].getCell(2).setName("PKTAKVD");
-//                row[0].getCell(3).setName("FALLVWD");
-//                row[0].getCell(4).setName("FALLAKVD");
-//                model.addRow(row[0]);
-//            }
             // Calculate...
             // Fire plugin for certain department
             fireDepartmentPlugin();
         } catch (MalformedURLException ex) {
             throw new ProcessorException("Could not open Excel file", ex);
         }
+        MyDatamodel model = new MyDatamodel();
+        model.setName("cognos_gch");
+        model.addRows(rows);
         return model;
     }
 

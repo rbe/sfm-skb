@@ -48,6 +48,12 @@ public class MyDatamodel {
         rows.add(row);
     }
 
+    public void addRows(List<MyRow> rows) {
+        for (MyRow row : rows) {
+            addRow(row);
+        }
+    }
+
     public long getRowCount() {
         return rows.size();
     }
