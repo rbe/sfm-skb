@@ -44,17 +44,21 @@ public class ExcelDataImportAdapterImpl implements DataImportAdapter {
         Sheet wbSheet = workbook.getSheetAt(sheet);
         Row wbRow = wbSheet.getRow(row);
         Cell cell = wbRow.getCell(column);
-        int cellType = cell.getCellType();
-        Object obj = null;
-        switch (cellType) {
-            case Cell.CELL_TYPE_NUMERIC:
-                obj = cell.getNumericCellValue();
-                break;
-            case Cell.CELL_TYPE_STRING:
-                obj = cell.getStringCellValue();
-                break;
+        MyCell myCell = null;
+        if (null != cell) {
+            int cellType = cell.getCellType();
+            Object obj = null;
+            switch (cellType) {
+                case Cell.CELL_TYPE_NUMERIC:
+                    obj = cell.getNumericCellValue();
+                    break;
+                case Cell.CELL_TYPE_STRING:
+                    obj = cell.getStringCellValue();
+                    break;
+            }
+            myCell = new MyCell(sheet + "$" + row + column, obj);
         }
-        return new MyCell(sheet + "$" + row + column, obj);
+        return myCell;
     }
 
     @Override
@@ -65,7 +69,12 @@ public class ExcelDataImportAdapterImpl implements DataImportAdapter {
     @Override
     public int getColumnCount(int sheet, int row) {
         Sheet wbSheet = workbook.getSheetAt(sheet);
-        return wbSheet.getRow(wbSheet.getLastRowNum()).getLastCellNum();
+        Row wbRow = wbSheet.getRow(row);
+        if (null != wbRow) {
+            return wbRow.getLastCellNum();
+        } else {
+            return 0;
+        }
     }
 
     @Override
@@ -84,10 +93,13 @@ public class ExcelDataImportAdapterImpl implements DataImportAdapter {
         MyDatamodel model = new MyDatamodel();
         for (int r = 0; r < rows; r++) {
             MyRow row = new MyRow();
-            for (int col = 0; col < getColumnCount(sheet, r); col++) {
-                row.addCell(getCell(sheet, r, col));
+            int cnt = getColumnCount(sheet, r);
+            if (cnt > 0) {
+                for (int col = 0; col < cnt; col++) {
+                    row.addCell(getCell(sheet, r, col));
+                }
+                model.addRow(row);
             }
-            model.addRow(row);
         }
         return model;
     }

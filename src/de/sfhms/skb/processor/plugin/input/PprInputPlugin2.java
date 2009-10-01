@@ -2,21 +2,17 @@ package de.sfhms.skb.processor.plugin.input;
 
 import de.sfhms.skb.input.DataImportAdapter;
 import de.sfhms.skb.input.DataImportFactory;
+import de.sfhms.skb.model.MyCell;
 import de.sfhms.skb.model.MyDatamodel;
 import de.sfhms.skb.model.MyRow;
+import de.sfhms.skb.output.MyOutput;
 import de.sfhms.skb.processor.plugin.AbstractPlugin;
 import de.sfhms.skb.processor.ProcessorException;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.SQLException;
+import java.util.Date;
 
 /**
  *
@@ -36,7 +32,7 @@ public class PprInputPlugin2 extends AbstractPlugin {
             MyRow[] row2 = model2.findRowByValue(config.getActualJob().getDept().getName());
             if (row2.length > 0) {
                 model = new MyDatamodel();
-                model.setName("ppr_einstufung");
+                model.setName("ppr_wert");
                 for (MyRow myRow : row2) {
                     myRow.getCell(0).setName("Fachrichtung");
                     myRow.getCell(1).setName("Station");
@@ -48,6 +44,7 @@ public class PprInputPlugin2 extends AbstractPlugin {
                     myRow.getCell(7).setName("Mittelwert");
                     myRow.getCell(8).setName("Summe");
                     myRow.getCell(9).setName("Summe_mit_Ausgleich");
+                    myRow.removeCell(10);
                     model.addRow(myRow);
                 }
             }
@@ -59,5 +56,12 @@ public class PprInputPlugin2 extends AbstractPlugin {
 
     @Override
     public void persist(MyDatamodel model) throws ProcessorException {
+        try {
+            MyOutput.toDatabase(model, new MyCell("Datum", new Date()), false);
+        } catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
+            logger.warning(e.toString());
+        } catch (SQLException ex) {
+            throw new ProcessorException("Could not persist akvd", ex);
+        }
     }
 }

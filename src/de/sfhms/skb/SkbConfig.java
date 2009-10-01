@@ -22,7 +22,7 @@ public class SkbConfig {
             javax.xml.bind.JAXBContext jaxbCtx = javax.xml.bind.JAXBContext.newInstance(config.getClass().getPackage().getName());
             javax.xml.bind.Unmarshaller unmarshaller = jaxbCtx.createUnmarshaller();
             config = (Skb) unmarshaller.unmarshal(SkbConfig.class.getResourceAsStream("/config1.xml")); //NOI18N
-            System.out.println("" + config.getJob().get(0).getName());
+//            System.out.println("" + config.getJob().get(0).getName());
         } catch (javax.xml.bind.JAXBException ex) {
             java.util.logging.Logger.getLogger("global").log(java.util.logging.Level.SEVERE, null, ex); //NOI18N
         }

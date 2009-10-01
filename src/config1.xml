@@ -4,10 +4,13 @@
         <dept name="GCH" fab="HA1800"/>
         <datasource name="akvd" url="file:///c:/test.xls" />
         <datasource name="ppr" url="file:///c:/test.csv" />
+        <datasource name="cognos" url="file:///c:/testcog.xls" />
         <datasource name="mysql" url="jdbc:mysql://localhost/skb"/>
         <input>
             <plugin class="de.sfhms.skb.processor.plugin.input.AkvdInputPlugin" />
-            <plugin class="de.sfhms.skb.processor.plugin.input.PprInputPlugin" />
+            <plugin class="de.sfhms.skb.processor.plugin.input.PprInputPlugin1" />
+            <plugin class="de.sfhms.skb.processor.plugin.input.PprInputPlugin2" />
+            <plugin class="de.sfhms.skb.processor.plugin.input.CognosInputPlugin" />
         </input>
         <output>
             <plugin class="string" />

@@ -50,30 +50,26 @@ public class MyOutput {
             builder.append(", ?");
         }
         builder.append(")");
-        System.out.println(builder.toString());
-        for (MyRow row : model.getRows()) {
-            for (int i = 0; i < row.getCellCount(); i++) {
-                System.out.println((i + 1) + " " + row.getCell(i).getName() + ": " + row.getCell(i).getValue().toString());
-            }
-        }
+//        System.out.println(builder.toString());
+//        for (MyRow row : model.getRows()) {
+//            for (int i = 0; i < row.getCellCount(); i++) {
+//                System.out.println((i + 1) + " " + row.getCell(i).getName() + ": " + row.getCell(i).getValue().toString());
+//            }
+//        }
         pstmt = verbindung.prepareStatement(builder.toString());
         for (MyRow row : model.getRows()) {
             for (int i = 0; i < row.getCellCount(); i++) {
                 pstmt.setObject(i + 1, row.getCell(i).getValue());
-                System.out.println((i + 1) + " " + row.getCell(i).getValue().toString());
+//                System.out.println((i + 1) + " " + row.getCell(i).getValue().toString());
             }
             pstmt.setObject((int) row.getCellCount() + 1, date.getValue());
-            System.out.println((row.getCellCount() + 1) + " " + date.getValue().toString());
+//            System.out.println((row.getCellCount() + 1) + " " + date.getValue().toString());
             if (autoincrement) {
-                pstmt.setNull((int)row.getCellCount() + 2, Types.INTEGER);
+                pstmt.setNull((int) row.getCellCount() + 2, Types.INTEGER);
             }
             pstmt.executeUpdate();
         }
         pstmt.close();
-
-
-        //PPR
-
     }
 
     public static Connection openDB() {

@@ -2,13 +2,17 @@ package de.sfhms.skb.processor.plugin.input;
 
 import de.sfhms.skb.input.DataImportAdapter;
 import de.sfhms.skb.input.DataImportFactory;
+import de.sfhms.skb.model.MyCell;
 import de.sfhms.skb.model.MyDatamodel;
 import de.sfhms.skb.model.MyRow;
+import de.sfhms.skb.output.MyOutput;
 import de.sfhms.skb.processor.plugin.AbstractPlugin;
 import de.sfhms.skb.processor.ProcessorException;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.Date;
 
 /**
  *
@@ -58,5 +62,12 @@ public class PprInputPlugin1 extends AbstractPlugin {
 
     @Override
     public void persist(MyDatamodel model) throws ProcessorException {
+        try {
+            MyOutput.toDatabase(model, new MyCell("Datum", new Date()), false);
+        } catch (com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException e) {
+            logger.warning(e.toString());
+        } catch (SQLException ex) {
+            throw new ProcessorException("Could not persist akvd", ex);
+        }
     }
 }
