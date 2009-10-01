@@ -28,7 +28,7 @@ public abstract class AbstractPlugin {
 
     public abstract void persist(MyDatamodel model) throws ProcessorException;
 
-    public void fireDepartmentPlugin() throws ProcessorException {
+    public void fireDeptPlugins() throws ProcessorException {
         DeptPluginStrategy ps = null;
         if (config.getActualJobName().equals("GCH")) {
             ps = new GCHDeptImpl(this);

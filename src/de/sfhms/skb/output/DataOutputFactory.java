@@ -25,16 +25,5 @@ public class DataOutputFactory {
         }
         return a;
     }
-
-    public synchronized static DataOutputAdapter createOOoOutputAdapterImpl(URL url) {
-        DataOutputAdapter a = cache.get(url);
-        if (null == a) {
-            a = new OOoDataOutputAdapterImpl();
-            a.open(url);
-            a.init();
-            cache.put(url, a);
-        }
-        return a;
-    }
 }
 

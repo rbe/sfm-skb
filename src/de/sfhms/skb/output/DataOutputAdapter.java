@@ -1,21 +1,25 @@
 package de.sfhms.skb.output;
 
 import de.sfhms.skb.model.MyCell;
+import de.sfhms.skb.processor.ProcessorException;
 import java.net.URL;
+import org.apache.poi.ss.usermodel.Sheet;
 
 public interface DataOutputAdapter {
 
-    public void open(URL url);
+    void open(URL url);
 
-    public void open(String url);
+    void open(String url);
 
-    public void init();
+    void init();
 
-    public void setCell(int row, int col, Class type);
+    void addSheet(String name);
 
-    public void setRowCount();
+    Sheet getSheetByNumber(int index);
 
-    public void setColmunCount();
+    void setCell(int sheet, int row, int col, Object value);
 
-    public MyCell[][] setCellRange();
+    void setCellRange(int sheet, int row, int col, MyCell[][] cells);
+
+    void close() throws ProcessorException;
 }

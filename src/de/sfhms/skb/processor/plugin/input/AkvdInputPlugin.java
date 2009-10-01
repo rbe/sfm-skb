@@ -43,7 +43,7 @@ public class AkvdInputPlugin extends AbstractPlugin {
             }
             // Calculate...
             // Fire plugin for certain department
-            fireDepartmentPlugin();
+            fireDeptPlugins();
         } catch (MalformedURLException ex) {
             throw new ProcessorException("Could not open Excel file", ex);
         }
