@@ -40,8 +40,7 @@ public class PluginExecutor {
             try {
                 Class clazz = Class.forName(p.getClazz());
                 AbstractPlugin ap = (AbstractPlugin) clazz.newInstance();
-                ap.execute();
-                ap.persist();
+                ap.persist(ap.execute());
             } catch (Exception e) {
                 throw new ProcessorException("Could not execute plugins for output job " + actualJob.getName(), e);
             }
