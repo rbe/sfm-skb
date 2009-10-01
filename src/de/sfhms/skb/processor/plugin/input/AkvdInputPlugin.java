@@ -41,9 +41,6 @@ public class AkvdInputPlugin extends AbstractPlugin {
                 row[0].getCell(4).setName("FALLAKVD");
                 model.addRow(row[0]);
             }
-            // Calculate...
-            // Fire plugin for certain department
-            fireDeptPlugins();
         } catch (MalformedURLException ex) {
             throw new ProcessorException("Could not open Excel file", ex);
         }
