@@ -1,8 +1,8 @@
 package de.sfhms.skb.processor.plugin;
 
-import de.sfhms.skb.processor.*;
 import de.sfhms.skb.SkbConfig;
 import de.sfhms.skb.jaxb.config.Skb;
+import de.sfhms.skb.processor.ProcessorException;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -26,8 +26,7 @@ public class PluginExecutor {
             try {
                 Class clazz = Class.forName(p.getClazz());
                 AbstractPlugin ap = (AbstractPlugin) clazz.newInstance();
-                ap.execute();
-                ap.persist();
+                ap.persist(ap.execute());
             } catch (Exception e) {
                 throw new ProcessorException("Could not execute plugins " + p.getClazz() + " for input job " + actualJob.getName(), e);
             }

@@ -1,6 +1,7 @@
 package de.sfhms.skb.processor.plugin;
 
 import de.sfhms.skb.SkbConfig;
+import de.sfhms.skb.model.MyDatamodel;
 import de.sfhms.skb.processor.ProcessorException;
 import de.sfhms.skb.processor.plugin.dept.DeptPluginStrategy;
 import de.sfhms.skb.processor.plugin.input.akvd.GCHDeptImpl;
@@ -23,9 +24,9 @@ public abstract class AbstractPlugin {
         config = SkbConfig.getInstance();
     }
 
-    public abstract void execute() throws ProcessorException;
+    public abstract MyDatamodel execute() throws ProcessorException;
 
-    public abstract void persist() throws ProcessorException;
+    public abstract void persist(MyDatamodel model) throws ProcessorException;
 
     public void fireDepartmentPlugin() throws ProcessorException {
         DeptPluginStrategy ps = null;
