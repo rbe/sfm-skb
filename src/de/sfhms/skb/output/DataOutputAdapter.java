@@ -13,7 +13,7 @@ public interface DataOutputAdapter {
 
     void init();
 
-    void addSheet(String name);
+    Sheet addSheet(String name);
 
     Sheet getSheetByNumber(int index);
 

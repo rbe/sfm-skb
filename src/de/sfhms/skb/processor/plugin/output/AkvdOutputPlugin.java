@@ -73,12 +73,12 @@ public class AkvdOutputPlugin extends AbstractPlugin {
         try {
             ExcelDataOutputAdapterImpl e = new ExcelDataOutputAdapterImpl();
             e.open(new URL("file:///c:/ralf.xls"));
-            e.init();
+            e.init();e.setCell(0, 0, 0, "hallo");
             int rw = OutputHelper.getInstance().getActualRow();
             int cl = 0;
             for (MyRow row : model.getRows()) {
                 for (MyCell cell : row.getCells()) {
-                    e.setCell(0, rw, cl++, cell.getValue());
+                    e.setCell(1, rw, cl++, cell.getValue());
                 }
                 rw++;
                 cl = 0;

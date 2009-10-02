@@ -30,14 +30,16 @@ public class ExcelDataOutputAdapterImpl implements DataOutputAdapter {
         workbook = new HSSFWorkbook();
     }
 
-    public void addSheet(String name) {
-        workbook.createSheet(name);
+    public Sheet addSheet(String name) {
+        return workbook.createSheet(name);
     }
 
     public Sheet getSheetByNumber(int index) {
-        Sheet sheet = workbook.getSheetAt(index);
-        if (null == sheet) {
-            addSheet("Tabelle" + index);
+        Sheet sheet = null;
+        try {
+            sheet = workbook.getSheetAt(index);
+        } catch (IllegalArgumentException e) {
+            sheet = addSheet("Tabelle" + index);
         }
         return sheet;
     }
