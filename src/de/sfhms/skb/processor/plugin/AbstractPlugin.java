@@ -3,8 +3,6 @@ package de.sfhms.skb.processor.plugin;
 import de.sfhms.skb.SkbConfig;
 import de.sfhms.skb.model.MyDatamodel;
 import de.sfhms.skb.processor.ProcessorException;
-import de.sfhms.skb.processor.plugin.dept.DeptPluginStrategy;
-import de.sfhms.skb.processor.plugin.input.akvd.GCHDeptImpl;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -27,14 +25,6 @@ public abstract class AbstractPlugin {
     public abstract MyDatamodel execute() throws ProcessorException;
 
     public abstract void persist(MyDatamodel model) throws ProcessorException;
-
-    public void fireDeptPlugins() throws ProcessorException {
-        DeptPluginStrategy ps = null;
-        if (config.getActualJobName().equals("GCH")) {
-            ps = new GCHDeptImpl(this);
-        }
-        ps.execute();
-    }
 
     public Object getVar(String name) {
         return map.get(name);

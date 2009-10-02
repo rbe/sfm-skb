@@ -28,7 +28,6 @@ public class PluginExecutor {
                 Class clazz = Class.forName(p.getClazz());
                 AbstractPlugin ap = (AbstractPlugin) clazz.newInstance();
                 MyDatamodel model = ap.execute();
-                ap.fireDeptPlugins();
                 ap.persist(model);
             } catch (Exception e) {
                 throw new ProcessorException("Could not execute plugins " + p.getClazz() + " for input job " + actualJob.getName(), e);
@@ -44,7 +43,6 @@ public class PluginExecutor {
                 Class clazz = Class.forName(p.getClazz());
                 AbstractPlugin ap = (AbstractPlugin) clazz.newInstance();
                 MyDatamodel model = ap.execute();
-                ap.fireDeptPlugins();
                 ap.persist(model);
             } catch (Exception e) {
                 throw new ProcessorException("Could not execute plugins for output job " + actualJob.getName(), e);
