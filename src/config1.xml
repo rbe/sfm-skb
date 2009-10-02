@@ -11,7 +11,7 @@
             <plugin class="de.sfhms.skb.processor.plugin.input.AkvdInputPlugin" />
             <plugin class="de.sfhms.skb.processor.plugin.input.PprInputPlugin1" />
             <plugin class="de.sfhms.skb.processor.plugin.input.PprInputPlugin2" />
-            <plugin class="de.sfhms.skb.processor.plugin.input.CognosInputPluginGCH" />
+            <plugin class="de.sfhms.skb.processor.plugin.input.CognosGCHInputPlugin" />
             <plugin class="de.sfhms.skb.processor.plugin.input.ZopPlugIn" />
         </input>
         <output>
@@ -20,6 +20,20 @@
     </job>
     <job name="ACH">
         <dept name="ACH" fab="HA1500"/>
+        <datasource name="mysql" url="jdbc:mysql://localhost/skb"/>
+        <datasource name="akvd" url="file:///c:/test.xls" />
+        <datasource name="ppr" url="file:///c:/test.csv" />
+        <input>
+            <plugin class="de.sfhms.skb.processor.plugin.input.AkvdInputPlugin" />
+            <plugin class="de.sfhms.skb.processor.plugin.input.PprInputPlugin1" />
+            <plugin class="de.sfhms.skb.processor.plugin.input.PprInputPlugin2" />
+        </input>
+        <output>
+            <plugin class="string" />
+        </output>
+    </job>
+    <job name="M2">
+        <dept name="M2" fab="HA0700"/>
         <datasource name="mysql" url="jdbc:mysql://localhost/skb"/>
         <datasource name="akvd" url="file:///c:/test.xls" />
         <datasource name="ppr" url="file:///c:/test.csv" />

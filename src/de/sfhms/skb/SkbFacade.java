@@ -11,7 +11,7 @@ public class SkbFacade {
 
     public static void main(String[] args) throws ProcessorException, SQLException {
         SkbConfig config = SkbConfig.getInstance();
-        config.setActualJob(config.getJobByName("ACH"));
+        config.setActualJob(config.getJobByName("M2"));
         PluginExecutor pe = new PluginExecutor();
         pe.fireInputPlugins();
     }
