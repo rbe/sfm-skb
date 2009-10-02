@@ -20,7 +20,7 @@ import java.util.List;
  *
  * @author brandes
  */
-public class ZopPlugIn extends AbstractPlugin {
+public class ZopPlugin extends AbstractPlugin {
 
     @Override
     public MyDatamodel execute() throws ProcessorException {
