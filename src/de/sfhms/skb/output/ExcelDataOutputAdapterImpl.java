@@ -28,7 +28,6 @@ public class ExcelDataOutputAdapterImpl implements DataOutputAdapter {
 
     public void init() {
         workbook = new HSSFWorkbook();
-        addSheet("Tabelle1");
     }
 
     public void addSheet(String name) {
@@ -36,7 +35,11 @@ public class ExcelDataOutputAdapterImpl implements DataOutputAdapter {
     }
 
     public Sheet getSheetByNumber(int index) {
-        return workbook.getSheetAt(index);
+        Sheet sheet = workbook.getSheetAt(index);
+        if (null == sheet) {
+            addSheet("Tabelle" + index);
+        }
+        return sheet;
     }
 
     public Row addRow(int sheet, int row) {
