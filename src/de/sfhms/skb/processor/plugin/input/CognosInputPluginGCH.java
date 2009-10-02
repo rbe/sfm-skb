@@ -19,7 +19,7 @@ import java.util.List;
  *
  * @author rbe
  */
-public class CognosInputPlugin extends AbstractPlugin {
+public class CognosInputPluginGCH extends AbstractPlugin {
 
     @Override
     public MyDatamodel execute() throws ProcessorException {
