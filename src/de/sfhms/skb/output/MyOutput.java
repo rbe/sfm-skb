@@ -59,8 +59,8 @@ public class MyOutput {
         pstmt = verbindung.prepareStatement(builder.toString());
         for (MyRow row : model.getRows()) {
             for (int i = 0; i < row.getCellCount(); i++) {
+//                System.out.println((i + 1) + " " + row.getCell(i).getValue().getClass().toString());
                 pstmt.setObject(i + 1, row.getCell(i).getValue());
-//                System.out.println((i + 1) + " " + row.getCell(i).getValue().toString());
             }
             pstmt.setObject((int) row.getCellCount() + 1, date.getValue());
 //            System.out.println((row.getCellCount() + 1) + " " + date.getValue().toString());

@@ -56,9 +56,9 @@
                               <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jButton2" min="-2" pref="95" max="-2" attributes="0"/>
+                              <Component id="jbImport" min="-2" pref="95" max="-2" attributes="0"/>
                               <EmptySpace pref="279" max="32767" attributes="0"/>
-                              <Component id="jButton3" min="-2" pref="95" max="-2" attributes="0"/>
+                              <Component id="jbExport" min="-2" pref="95" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jButton1" min="-2" pref="97" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -69,6 +69,10 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jtAkvd" min="-2" pref="463" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                              <Component id="jbOpenAkvd" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -89,14 +93,18 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="286" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtAkvd" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbOpenAkvd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="277" max="32767" attributes="0"/>
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbImport" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbExport" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="11" pref="11" max="11" attributes="0"/>
                   </Group>
@@ -169,10 +177,10 @@
                 <Property name="name" type="java.lang.String" value="jLabel3" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton2">
+            <Component class="javax.swing.JButton" name="jbImport">
               <Properties>
-                <Property name="text" type="java.lang.String" resourceKey="jButton2.text"/>
-                <Property name="name" type="java.lang.String" value="jButton2" noResource="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="jbImport.text"/>
+                <Property name="name" type="java.lang.String" value="jbImport" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel4">
@@ -185,11 +193,11 @@
                 <Property name="name" type="java.lang.String" value="jLabel4" noResource="true"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton3">
+            <Component class="javax.swing.JButton" name="jbExport">
               <Properties>
-                <Property name="text" type="java.lang.String" resourceKey="jButton3.text"/>
-                <Property name="actionCommand" type="java.lang.String" resourceKey="jButton3.actionCommand"/>
-                <Property name="name" type="java.lang.String" value="jButton3" noResource="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="jbExport.text"/>
+                <Property name="actionCommand" type="java.lang.String" resourceKey="jbExport.actionCommand"/>
+                <Property name="name" type="java.lang.String" value="jbExport" noResource="true"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel5">
@@ -197,6 +205,18 @@
                 <Property name="font" type="java.awt.Font" resourceKey="jLabel5.font"/>
                 <Property name="text" type="java.lang.String" resourceKey="jLabel5.text"/>
                 <Property name="name" type="java.lang.String" value="jLabel5" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jtAkvd">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="jtAkvd.text"/>
+                <Property name="name" type="java.lang.String" value="jtAkvd" noResource="true"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jbOpenAkvd">
+              <Properties>
+                <Property name="text" type="java.lang.String" resourceKey="jbOpenAkvd.text"/>
+                <Property name="name" type="java.lang.String" value="jbOpenAkvd" noResource="true"/>
               </Properties>
             </Component>
           </SubComponents>

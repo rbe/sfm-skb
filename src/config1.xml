@@ -12,7 +12,7 @@
             <plugin class="de.sfhms.skb.processor.plugin.input.PprInputPlugin1" />
             <plugin class="de.sfhms.skb.processor.plugin.input.PprInputPlugin2" />
             <plugin class="de.sfhms.skb.processor.plugin.input.CognosGCHInputPlugin" />
-            <plugin class="de.sfhms.skb.processor.plugin.input.ZopPlugIn" />
+            <plugin class="de.sfhms.skb.processor.plugin.input.ZopPlugin" />
         </input>
         <output>
             <plugin class="string" />

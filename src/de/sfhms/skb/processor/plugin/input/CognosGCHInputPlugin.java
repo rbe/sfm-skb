@@ -42,28 +42,34 @@ public class CognosGCHInputPlugin extends AbstractPlugin {
                     cell0.setValue(temp);
                 }
                 //Set cell names
-                row.getCell(0).setName("Kostenart");
-                row.getCell(1).setName("Bezeichnung");
-                row.getCell(2).setName("kumGCH");
-                row.getCell(3).setName("kumPflegeBereich");
-                row.getCell(4).setName("kumDSA");
-                row.getCell(5).setName("kumOP");
-                row.getCell(6).setName("kumOP6");
-                row.getCell(7).setName("kumDSAZOP");
-                row.getCell(8).setName("MonatGCH");
-                row.getCell(9).setName("MonatPflegeBereich");
-                row.getCell(10).setName("MonatDSA");
-                row.getCell(11).setName("MonatOP");
-                row.getCell(12).setName("MonatOP6");
-                row.getCell(13).setName("MonatDSAZOP");
+                MyCell kostenart = row.getCell(0); //.setName("Kostenart");
+                MyCell bezeichnung = row.getCell(1); // .setName("Bezeichnung");
+                MyCell kumGCH = row.getCell(2); //.setName("kumGCH");
+                MyCell kumPflegeBereich = row.getCell(3); //.setName("kumPflegeBereich");
+                MyCell kumDSA = row.getCell(4); //.setName("kumDSA");
+                MyCell kumOP = row.getCell(5); //.setName("kumOP");
+                MyCell kumOP6 = row.getCell(6); //.setName("kumOP6");
+                MyCell kumDSAZOP = row.getCell(7); //.setName("kumDSAZOP");
+                MyCell MonatGCH = row.getCell(8); //.setName("MonatGCH");
+                MyCell MonatPflegeBereich = row.getCell(9); //.setName("MonatPflegeBereich");
+                MyCell MonatDSA = row.getCell(10); //.setName("MonatDSA");
+                MyCell MonatOP = row.getCell(11); //.setName("MonatOP");
+                MyCell MonatOP6 = row.getCell(12); //.setName("MonatOP6");
+                MyCell MonatDSAZOP = row.getCell(13); //.setName("MonatDSAZOP");
                 //
-                rows.add(row);
+                MyRow row1 = new MyRow();
+                row1.addCell(new MyCell("fab", "GCH"));
+                row1.addCell(new MyCell("kostenart", kostenart.getValue()));
+                row1.addCell(new MyCell("bezeichnung", bezeichnung.getValue()));
+                row1.addCell(new MyCell("kumJahr", row.getCell(2).getValueAsDouble() + row.getCell(3).getValueAsDouble() + row.getCell(4).getValueAsDouble() + row.getCell(5).getValueAsDouble() + row.getCell(6).getValueAsDouble() + row.getCell(7).getValueAsDouble()));
+                row1.addCell(new MyCell("Monat", row.getCell(8).getValueAsDouble() + row.getCell(9).getValueAsDouble() + row.getCell(10).getValueAsDouble() + row.getCell(11).getValueAsDouble() + row.getCell(12).getValueAsDouble() + row.getCell(13).getValueAsDouble()));
+                rows.add(row1);
             }
         } catch (MalformedURLException ex) {
             throw new ProcessorException("Could not open Excel file", ex);
         }
         MyDatamodel model = new MyDatamodel();
-        model.setName("cognos_gch");
+        model.setName("cognos");
         model.addRows(rows);
         return model;
     }
