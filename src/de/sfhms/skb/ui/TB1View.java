@@ -115,6 +115,31 @@ public class TB1View extends FrameView {
         };
     }
 
+    @Action
+    public void jbImport(){
+
+    }
+
+    @Action
+    public void jbExport(){
+        
+    }
+
+    @Action
+    public void jbOpenAkvd(){
+        
+    }
+
+    @Action
+    public void jcbAbt(){
+        
+    }
+
+    @Action
+    public void jcbMonat(){
+        
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -171,7 +196,7 @@ public class TB1View extends FrameView {
         jLabel2.setText(resourceMap.getString("jLabel2.text")); // NOI18N
         jLabel2.setName("jLabel2"); // NOI18N
 
-        jcbMonat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Monat", "01", "02", "03", "04" }));
+        jcbMonat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Monat", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         jcbMonat.setName("jcbMonat"); // NOI18N
 
         jtJahr.setText(resourceMap.getString("jtJahr.text")); // NOI18N
