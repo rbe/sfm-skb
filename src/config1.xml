@@ -15,7 +15,9 @@
             <plugin class="de.sfhms.skb.processor.plugin.input.ZopPlugin" />
         </input>
         <output>
-            <plugin class="string" />
+            <dept name="GCH" fab="HA1800"/>
+            <datasource name="mysql" url="jdbc:mysql://localhost/skb"/>
+            <plugin class="de.sfhms.skb.processor.plugin.output.AkvdOutputPlugin" />
         </output>
     </job>
     <job name="ACH">

@@ -13,6 +13,7 @@ public class SkbFacade {
         SkbConfig config = SkbConfig.getInstance();
         config.setActualJob(config.getJobByName("GCH"));
         PluginExecutor pe = new PluginExecutor();
-        pe.fireInputPlugins();
+//        pe.fireInputPlugins();
+        pe.fireOutputPlugins();
     }
 }

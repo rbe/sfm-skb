@@ -73,14 +73,4 @@ public class ExcelDataOutputAdapterImpl implements DataOutputAdapter {
             throw new ProcessorException("Could not save Excel file", e);
         }
     }
-//    public static void main(String[] args) throws Exception {
-//        ExcelDataOutputAdapterImpl e=new ExcelDataOutputAdapterImpl();
-//        e.open(new URL("file:///c:/ralf.xls"));
-//        e.init();
-//        e.setCell(0, 0, 0, "blabla");
-//        e.setCell(0, 0, 1, 1.5);
-//        e.setCell(0, 0, 2, 150);
-//        e.setCell(0, 0, 3, 1.5f);
-//        e.close();
-//    }
 }
