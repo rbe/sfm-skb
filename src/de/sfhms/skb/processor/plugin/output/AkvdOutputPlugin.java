@@ -35,12 +35,12 @@ public class AkvdOutputPlugin extends AbstractPlugin {
             //
             Calendar precCal = Calendar.getInstance();
             precCal.setTime(oh.getActualYear());
-            int precMonth = precCal.get(Calendar.MONTH + 1);
+            int precMonth = precCal.get(Calendar.MONTH) + 1;
             int precYear = precCal.get(Calendar.YEAR) - 1;
             Calendar actualCal = Calendar.getInstance();
             //
             actualCal.setTime(oh.getActualYear());
-            int actualMonth = actualCal.get(Calendar.MONTH + 1);
+            int actualMonth = actualCal.get(Calendar.MONTH) + 1;
             int actualYear = actualCal.get(Calendar.YEAR);
             //
             stmt.setInt(1, precMonth);
@@ -59,7 +59,7 @@ public class AkvdOutputPlugin extends AbstractPlugin {
                 row.addCell(new MyCell("fallvwd", result.getDouble("fallvwd")));
                 row.addCell(new MyCell("fallakvd", result.getDouble("fallakvd")));
                 row.addCell(new MyCell("differenz_vwd", result.getDouble("differenz_vwd")));
-                row.addCell(new MyCell("differenz_akwd", result.getDouble("differenz_akwd")));
+                row.addCell(new MyCell("differenz_akwd", result.getDouble("differenz_akvd")));
                 model.addRow(row);
             }
         } catch (Exception e) {
@@ -74,14 +74,17 @@ public class AkvdOutputPlugin extends AbstractPlugin {
             ExcelDataOutputAdapterImpl e = new ExcelDataOutputAdapterImpl();
             e.open(new URL("file:///c:/ralf.xls"));
             e.init();
-            int rw = 0;
+            int rw = OutputHelper.getInstance().getActualRow();
             int cl = 0;
             for (MyRow row : model.getRows()) {
                 for (MyCell cell : row.getCells()) {
-                    e.setCell(0, rw++, cl++, cell.getValue());
+                    e.setCell(0, rw, cl++, cell.getValue());
                 }
+                rw++;
+                cl = 0;
             }
             e.close();
+            OutputHelper.getInstance().setActualRow(rw);
         } catch (MalformedURLException ex) {
             throw new ProcessorException("", ex);
         }
